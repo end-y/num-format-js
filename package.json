@@ -1,0 +1,41 @@
+{
+  "name": "@yourusername/num-format-js",
+  "version": "0.1.0",
+  "description": "WebAssembly bindings for num-format - Format numbers with locale support",
+  "main": "pkg/num_format_js.js",
+  "types": "pkg/num_format_js.d.ts",
+  "files": [
+    "pkg"
+  ],
+  "scripts": {
+    "dev": "npm run build:bundler && vite",
+    "build": "wasm-pack build --target bundler --out-dir pkg",
+    "build:bundler": "wasm-pack build --target bundler --out-dir pkg",
+    "build:web": "wasm-pack build --target web --out-dir pkg",
+    "build:nodejs": "wasm-pack build --target nodejs --out-dir pkg",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "wasm",
+    "webassembly",
+    "number-format",
+    "locale",
+    "i18n",
+    "formatting"
+  ],
+  "author": "end-y",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vite-plugin-wasm": "^3.3.0",
+    "vite-plugin-top-level-await": "^1.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/end-y/num-format-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/end-y/num-format-js/issues"
+  },
+  "homepage": "https://github.com/end-y/num-format-js#readme"
+}
