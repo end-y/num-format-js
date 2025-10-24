@@ -1,5 +1,5 @@
 {
-  "name": "@yourusername/num-format-js",
+  "name": "@end-y/num-format-js",
   "version": "0.1.0",
   "description": "WebAssembly bindings for num-format - Format numbers with locale support",
   "main": "pkg/num_format_js.js",
@@ -32,7 +32,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/end-y/num-format-js.git"
+    "url": "git+https://github.com/end-y/num-format-js.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   },
   "bugs": {
     "url": "https://github.com/end-y/num-format-js/issues"
