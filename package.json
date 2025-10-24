@@ -34,9 +34,6 @@
     "type": "git",
     "url": "git+https://github.com/end-y/num-format-js.git"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "bugs": {
     "url": "https://github.com/end-y/num-format-js/issues"
   },
