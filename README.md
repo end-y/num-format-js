@@ -17,7 +17,7 @@
 ## 📦 Installation
 
 ```bash
-npm install @end-y/num-format-js
+npm install @end-y/num-format-js@latest
 
 ## 🚀 Quick Start
 ```

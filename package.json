@@ -5,6 +5,9 @@
   "main": "pkg/num_format_js.js",
   "types": "pkg/num_format_js.d.ts",
   "files": [
+    "src",
+    "Cargo.toml",
+    "Cargo.lock",
     "pkg"
   ],
   "scripts": {
@@ -27,8 +30,8 @@
   "license": "MIT",
   "devDependencies": {
     "vite": "^5.0.0",
-    "vite-plugin-wasm": "^3.3.0",
-    "vite-plugin-top-level-await": "^1.4.1"
+    "vite-plugin-top-level-await": "^1.4.1",
+    "vite-plugin-wasm": "^3.3.0"
   },
   "repository": {
     "type": "git",
@@ -37,5 +40,8 @@
   "bugs": {
     "url": "https://github.com/end-y/num-format-js/issues"
   },
-  "homepage": "https://github.com/end-y/num-format-js#readme"
+  "homepage": "https://github.com/end-y/num-format-js#readme",
+  "dependencies": {
+    "@end-y/num-format-js": "^0.1.0"
+  }
 }
