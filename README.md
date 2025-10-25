@@ -1,6 +1,6 @@
 # 🔢 num-format-js
 
-[![npm version](https://img.shields.io/npm/v/@end-y/num-format-js.svg)](https://www.npmjs.com/package/@end-y/num-format-js)
+[![npm version](https://img.shields.io/npm/v/num-format-js.svg)](https://www.npmjs.com/package/num-format-js)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 > WebAssembly bindings for [num-format](https://github.com/bcmyers/num-format) - Blazingly fast number formatting with locale support for JavaScript/TypeScript 🚀
@@ -17,17 +17,19 @@
 ## 📦 Installation
 
 ```bash
-npm install @end-y/num-format-js@latest
-
-## 🚀 Quick Start
+npm install num-format-js@latest
 ```
 
+## 🚀 Quick Start
+
+````
+
 ```typescript
-import { formatString } from "@end-y/num-format-js";
+import { formatString } from "num-format-js";
 
 const result = formatString("tr", 123333666);
 console.log(result); // "123,333,666"
-```
+````
 
 ## 📝 API
 

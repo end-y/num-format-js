@@ -1,4 +1,4 @@
-import { format_string, format_with_custom_locale } from "@end-y/num-format-js";
+import { format_string, format_with_custom_locale } from "num-format-js";
 
 // Sample number for demonstrations
 const SAMPLE_NUMBER = 9876543;
