@@ -43,8 +43,5 @@
   "bugs": {
     "url": "https://github.com/end-y/num-format-js/issues"
   },
-  "homepage": "https://github.com/end-y/num-format-js#readme",
-  "dependencies": {
-    "@end-y/num-format-js": "^0.1.0"
-  }
+  "homepage": "https://github.com/end-y/num-format-js#readme"
 }
