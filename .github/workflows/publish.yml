@@ -31,6 +31,14 @@ jobs:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
+      - name: Create .npmrc (explicit)
+        run: |
+          echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc
+          echo "@rprojects:registry=https://registry.npmjs.org/" >> ~/.npmrc
+          echo "always-auth=true" >> ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       # Kök paketin node bağımlılıkları gerekli değilse bunu bile atlayabilirsiniz
       - name: Install deps (optional)
         run: npm ci || npm install
