@@ -36,7 +36,7 @@ jobs:
         run: npm ci || npm install
 
       - name: Build WASM (bundler)
-        run: wasm-pack build --target bundler --out-dir pkg --release
+        run: wasm-pack build --target bundler --out-dir pkg --scope rprojects --release
 
       - name: Show contents to be published
         run: |
