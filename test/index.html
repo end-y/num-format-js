@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>🔢 num-format-js - Blazingly Fast Number Formatting</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🔢 num-format-js</h1>
+        <p class="subtitle">
+          Blazingly fast number formatting with WebAssembly
+        </p>
+        <div class="badges">
+          <span class="badge">🦀 Rust + WASM</span>
+          <span class="badge">⚡ High Performance</span>
+          <span class="badge">🌍 Locale Support</span>
+          <span class="badge">🎨 Custom Formatting</span>
+        </div>
+      </header>
+
+      <!-- Locale Examples Section -->
+      <section class="section">
+        <h2>🌍 Locale Examples</h2>
+        <p class="section-description">
+          Format numbers according to different locales with a single function
+          call. Each country has its own formatting rules for thousands
+          separators and decimal points.
+        </p>
+        <div class="examples-grid" id="locale-examples"></div>
+
+        <div class="code-section">
+          <pre><code><span class="keyword">import</span> { format_string } <span class="keyword">from</span> <span class="string">'@rprojects/num-format-js'</span>;
+
+<span class="comment">// Format with any locale</span>
+<span class="keyword">const</span> result = format_string(<span class="string">'en'</span>, <span class="number">1234567</span>);
+console.log(result); <span class="comment">// "1,234,567"</span></code></pre>
+        </div>
+      </section>
+
+      <!-- Custom Formatting Section -->
+      <section class="section">
+        <h2>🎨 Custom Formatting</h2>
+        <p class="section-description">
+          Take full control with custom separators, decimal points, and signs.
+          All settings are optional - use defaults or override what you need.
+        </p>
+
+        <div class="custom-demo">
+          <h3>🎯 Custom Format Demo</h3>
+          <div class="custom-settings" id="custom-settings"></div>
+          <div class="result-box">
+            <div class="label">Formatted Result</div>
+            <div class="result" id="custom-result"></div>
+          </div>
+        </div>
+
+        <div class="code-section">
+          <pre><code><span class="keyword">import</span> { format_with_custom_locale } <span class="keyword">from</span> <span class="string">'@rprojects/num-format-js'</span>;
+
+<span class="comment">// All settings are optional!</span>
+<span class="keyword">const</span> result = format_with_custom_locale(<span class="number">-9876543</span>, {
+  grouping: <span class="number">0</span>,          <span class="comment">// 0: Standard, 1: Indian, 2: Posix</span>
+  minus_sign: <span class="string">'−'</span>,
+  plus_sign: <span class="string">'+'</span>,
+  decimal: <span class="string">','</span>,
+  separator: <span class="string">' '</span>
+});</code></pre>
+        </div>
+      </section>
+
+      <!-- Fun Examples Section -->
+      <section class="section">
+        <h2>🎉 Fun Examples</h2>
+        <p class="section-description">
+          Get creative! Use emojis or any characters as separators.
+        </p>
+        <div class="examples-grid" id="fun-examples"></div>
+      </section>
+
+      <footer>
+        <p>
+          Made with ❤️ and 🦀 Rust |
+          <a href="https://github.com/end-y/num-format-js" target="_blank"
+            >GitHub</a
+          >
+          |
+          <a
+            href="https://www.npmjs.com/package/@rprojects/num-format-js"
+            target="_blank"
+            >NPM</a
+          >
+        </p>
+      </footer>
+    </div>
+
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
