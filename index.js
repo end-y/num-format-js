@@ -1,4 +1,7 @@
-import { format_string, format_with_custom_locale } from "num-format-js";
+import {
+  format_string,
+  format_with_custom_locale,
+} from "@rprojects/num-format-js";
 
 // Sample number for demonstrations
 const SAMPLE_NUMBER = 9876543;
@@ -115,7 +118,7 @@ function createFunExamples() {
 }
 
 function init() {
-  console.log("🚀 num-format-js demo loaded!");
+  console.log("🚀 @rprojects/num-format-js demo loaded!");
 
   createLocaleExamples();
   createCustomDemo();

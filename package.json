@@ -1,5 +1,5 @@
 {
-  "name": "num-format-js",
+  "name": "@rprojects/num-format-js",
   "version": "0.1.0",
   "description": "WebAssembly bindings for num-format - Format numbers with locale support",
   "main": "pkg/num_format_js.js",
