@@ -1,6 +1,6 @@
 {
   "name": "@rprojects/num-format-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "WebAssembly bindings for num-format - Format numbers with locale support",
   "main": "pkg/num_format_js.js",
   "types": "pkg/num_format_js.d.ts",
@@ -16,6 +16,7 @@
     "build:bundler": "wasm-pack build --target bundler --out-dir pkg",
     "build:web": "wasm-pack build --target web --out-dir pkg",
     "build:nodejs": "wasm-pack build --target nodejs --out-dir pkg",
+    "prepare": "npm run build",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
