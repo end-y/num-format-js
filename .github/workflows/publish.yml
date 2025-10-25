@@ -3,7 +3,7 @@ name: Publish Package
 on:
   release:
     types: [created]
-  workflow_dispatch: # Manuel tetikleme için
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -13,7 +13,7 @@ jobs:
       packages: write
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
 
       - name: Setup Rust
@@ -31,14 +31,19 @@ jobs:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Install dependencies
-        run: npm install
+      # Kök paketin node bağımlılıkları gerekli değilse bunu bile atlayabilirsiniz
+      - name: Install deps (optional)
+        run: npm ci || npm install
 
-      - name: Build WASM package
-        run: npm run build
+      - name: Build WASM (bundler)
+        run: wasm-pack build --target bundler --out-dir pkg --release
 
-      - name: Publish to NPM
-        run: npm publish --access public
+      - name: Show contents to be published
+        run: |
+          ls -la pkg
+          npm pack ./pkg --dry-run
+
+      - name: Publish ./pkg to NPM
+        run: npm publish ./pkg --access public
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
