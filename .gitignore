@@ -2,3 +2,4 @@
 /target
 /pkg
 .DS_Store
+.env
