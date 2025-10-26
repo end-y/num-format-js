@@ -17,23 +17,54 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check version bump
+        id: version_check
+        run: |
+          if git show HEAD^:package.json >/tmp/prev_package.json 2>/dev/null; then
+            prev_version=$(jq -r '.version' /tmp/prev_package.json)
+          else
+            prev_version=""
+          fi
+          curr_version=$(jq -r '.version' package.json)
+          if [ -z "$prev_version" ] || [ "$prev_version" != "$curr_version" ]; then
+            echo "should_publish=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_publish=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "previous_version=$prev_version" >> "$GITHUB_OUTPUT"
+          echo "current_version=$curr_version" >> "$GITHUB_OUTPUT"
+
+      - name: Skip publish because version unchanged
+        if: ${{ steps.version_check.outputs.should_publish == 'false' }}
+        run: |
+          echo "::notice::package.json version (${CURRENT_VERSION:-unknown}) unchanged; skipping publish workflow."
+          exit 0
+        env:
+          CURRENT_VERSION: ${{ steps.version_check.outputs.current_version }}
 
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         with:
           toolchain: stable
           target: wasm32-unknown-unknown
 
       - name: Install wasm-pack
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         run: curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         with:
           node-version: "20"
           registry-url: "https://registry.npmjs.org"
 
       - name: Create .npmrc (explicit)
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         run: |
           echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc
           echo "@rprojects:registry=https://registry.npmjs.org/" >> ~/.npmrc
@@ -43,17 +74,21 @@ jobs:
 
       # Kök paketin node bağımlılıkları gerekli değilse bunu bile atlayabilirsiniz
       - name: Install deps (optional)
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         run: npm ci || npm install
 
       - name: Build WASM (bundler)
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         run: wasm-pack build --target bundler --out-dir pkg --scope rprojects --release
 
       - name: Show contents to be published
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         run: |
           ls -la pkg
           npm pack ./pkg --dry-run
 
       - name: Publish ./pkg to NPM
+        if: ${{ steps.version_check.outputs.should_publish == 'true' }}
         run: npm publish ./pkg --access public
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
