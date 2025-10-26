@@ -202,12 +202,15 @@ header .badge {
 
 .note {
   background: rgba(255, 255, 255, 0.18);
-  padding: 0.9rem 1.2rem;
+  padding: 0.9rem 0.9rem;
   border-left: 4px solid rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   color: rgba(255, 255, 255, 0.95);
   font-size: 0.95rem;
   max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
 }
 
 .code-section .comment {

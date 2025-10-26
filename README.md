@@ -5,6 +5,8 @@
 
 > WebAssembly bindings for [num-format](https://github.com/bcmyers/num-format) - Blazingly fast number formatting with locale support for JavaScript/TypeScript 🚀
 
+> ⚠️ This package was created as an educational exercise to practice building Rust → WebAssembly libraries and publishing them to npm. Expect experimental features and limited support.
+
 ## ✨ Features
 
 - 🌍 **Locale Support** - Format numbers according to different locales (en, tr, de, fr, etc.)
