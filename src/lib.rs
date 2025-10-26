@@ -2,6 +2,22 @@ use wasm_bindgen::prelude::*;
 use js_sys::Reflect;
 use num_format::{Buffer, CustomFormat, Grouping, Locale, ToFormattedString};
 
+#[wasm_bindgen(typescript_custom_section)]
+const WAT: &str = r#"
+type CustomSettings = {
+    grouping: Grouping;
+    decimal: string;
+    separator: string;
+    minusSign: string;
+    plusSign: string;
+};
+export enum Grouping {
+    Standard = 0,
+    Indian = 1,
+    Posix = 2
+}
+"#;
+
 #[wasm_bindgen(start)]
 pub fn main() {
     #[cfg(feature = "console_error_panic_hook")]
