@@ -67,9 +67,9 @@ function createLocaleExamples() {
     localeDiv.textContent = `locale: '${locale}'`;
     numberDiv.textContent = formatted;
 
-    card.appendChild(flag);
-    card.appendChild(country);
-    card.appendChild(locale);
+    card.appendChild(flagDiv);
+    card.appendChild(countryDiv);
+    card.appendChild(localeDiv);
     card.appendChild(numberDiv);
 
     container.appendChild(card);
