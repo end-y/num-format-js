@@ -51,13 +51,26 @@ function createLocaleExamples() {
     const formatted = format_string(locale, number);
 
     const card = document.createElement("div");
+    const flagDiv = document.createElement("div");
+    const countryDiv = document.createElement("div");
+    const localeDiv = document.createElement("div");
+    const numberDiv = document.createElement("div");
+
+    flagDiv.className = "flag";
+    countryDiv.className = "country";
+    localeDiv.className = "locale";
+    numberDiv.className = "number";
     card.className = "example-card";
-    card.innerHTML = `
-      <div class="flag">${flag}</div>
-      <div class="country">${country}</div>
-      <div class="locale">locale: '${locale}'</div>
-      <div class="number">${formatted}</div>
-    `;
+
+    flagDiv.textContent = flag;
+    countryDiv.textContent = country;
+    localeDiv.textContent = `locale: '${locale}'`;
+    numberDiv.textContent = formatted;
+
+    card.appendChild(flag);
+    card.appendChild(country);
+    card.appendChild(locale);
+    card.appendChild(numberDiv);
 
     container.appendChild(card);
   });
@@ -106,12 +119,21 @@ function createFunExamples() {
     const formatted = format_with_custom_locale(number, settings);
 
     const card = document.createElement("div");
+    const country = document.createElement("div");
+    const locale = document.createElement("div");
+    const numberDiv = document.createElement("div");
+    country.className = "country";
+    locale.className = "locale";
+    numberDiv.className = "number";
     card.className = "example-card";
-    card.innerHTML = `
-      <div class="country">${name}</div>
-      <div class="locale">Input: ${number.toLocaleString()}</div>
-      <div class="number">${formatted}</div>
-    `;
+
+    country.textContent = name;
+    locale.textContent = `Input: ${number.toLocaleString()}`;
+    numberDiv.textContent = formatted;
+
+    card.appendChild(country);
+    card.appendChild(locale);
+    card.appendChild(numberDiv);
 
     container.appendChild(card);
   });

@@ -4,3 +4,4 @@
 .DS_Store
 .env
 /docs/node_modules
+/docs/dist
