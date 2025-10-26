@@ -54,7 +54,7 @@ dependencies = [
 
 [[package]]
 name = "num-format-js"
-version = "0.1.4"
+version = "0.1.5"
 dependencies = [
  "js-sys",
  "num-format",

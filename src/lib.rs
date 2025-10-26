@@ -1,20 +1,27 @@
 use wasm_bindgen::prelude::*;
+use wasm_bindgen::JsCast;
 use js_sys::Reflect;
 use num_format::{Buffer, CustomFormat, Grouping, Locale, ToFormattedString};
 
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(typescript_type = "CustomSettings")]
+    pub type CustomSettings;
+}
+
 #[wasm_bindgen(typescript_custom_section)]
 const WAT: &str = r#"
-type CustomSettings = {
+export interface CustomSettings {
     grouping: Grouping;
     decimal: string;
     separator: string;
     minusSign: string;
     plusSign: string;
-};
+}
 export enum Grouping {
     Standard = 0,
     Indian = 1,
-    Posix = 2
+    Posix = 2,
 }
 "#;
 
@@ -47,10 +54,11 @@ pub fn get_locale_settings(locale: &str) -> JsValue {
     return wasm_bindgen_value;
 }
 #[wasm_bindgen]
-pub fn format_with_custom_locale(number: isize, custom_settings: &JsValue) -> String {
+pub fn format_with_custom_locale(number: isize, custom_settings: &CustomSettings) -> String {
+    let custom_settings: &JsValue = custom_settings.unchecked_ref();
     let grouping = Reflect::get(custom_settings, &"grouping".into()).ok().and_then(|v| v.as_f64()).and_then(|v| Some(v as u8)).unwrap_or(0);
-    let minus_sign = Reflect::get(custom_settings, &"minus_sign".into()).ok().and_then(|v| v.as_string()).unwrap_or("-".to_string());
-    let plus_sign = Reflect::get(custom_settings, &"plus_sign".into()).ok().and_then(|v| v.as_string()).unwrap_or("+".to_string());
+    let minus_sign = Reflect::get(custom_settings, &"minusSign".into()).ok().and_then(|v| v.as_string()).or_else(|| Reflect::get(custom_settings, &"minus_sign".into()).ok().and_then(|v| v.as_string())).unwrap_or("-".to_string());
+    let plus_sign = Reflect::get(custom_settings, &"plusSign".into()).ok().and_then(|v| v.as_string()).or_else(|| Reflect::get(custom_settings, &"plus_sign".into()).ok().and_then(|v| v.as_string())).unwrap_or("+".to_string());
     let decimal = Reflect::get(custom_settings, &"decimal".into()).ok().and_then(|v| v.as_string()).unwrap_or(".".to_string());
     let separator = Reflect::get(custom_settings, &"separator".into()).ok().and_then(|v| v.as_string()).unwrap_or(",".to_string());
     let format = CustomFormat::builder().grouping(get_grouping_from_u8(grouping)).decimal(decimal.as_str()).minus_sign(minus_sign).plus_sign(plus_sign).separator(separator).build();
@@ -81,5 +89,3 @@ fn get_grouping_from_grouping_name(grouping: Grouping) -> u8 {
         Grouping::Posix => 2,
     }
 }
-
-    
