@@ -12,7 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@rprojects/num-format-js": "^0.1.5"
+    "@rprojects/num-format-js": "^0.1.6"
   },
   "devDependencies": {
     "vite": "^5.0.0",
